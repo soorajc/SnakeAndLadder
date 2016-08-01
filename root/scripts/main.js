@@ -4,7 +4,7 @@
 var MainApp = React.createClass({
 
   getInitialState: function() {
-   return {diceNumber : 1 , playerNumber:0};
+   return {diceNumber : 1 , playerNumber:0, redDice: 1, greenDice: 1, blueDice: 1, yellowDice: 1};
  },
 
   componentDidMount() {
@@ -14,15 +14,56 @@ var MainApp = React.createClass({
   },
 
   handleDice: function(diceNumber, playerNumber) {
+    var tap = new Audio("../images/tap.mp3");
     console.log("This.state.player--", playerNumber);
+    tap.play();
     this.setState({playerNumber: playerNumber });
+    if(playerNumber === 1){
+      var val =  this.state.redDice + diceNumber + 1;
+      var final = this.setDisplacement(val);
+      if(final < 100){
+        this.setState({redDice: final});
+      }else if ( final === 100){
+        alert("Red Wins");
+        location.reload();
+      }
+      console.log("Testing final value",final );
+    }else if( playerNumber === 2){
+      var val =  this.state.greenDice + diceNumber + 1;
+      var final = this.setDisplacement(val);
+      if(final < 100) {
+        this.setState({greenDice: final});
+      }else if ( final === 100){
+        alert("Green Wins");
+        location.reload();
+      }
+    }else if ( playerNumber === 3){
+      var val =  this.state.blueDice + diceNumber + 1;
+      var final = this.setDisplacement(val);
+      if(final <100){
+          this.setState({blueDice: final });
+      }else if ( final === 100){
+        alert("Blue Wins");
+          location.reload();
+      }
+    }else if ( playerNumber === 4 ){
+      var val =  this.state.yellowDice + diceNumber + 1;
+      var final = this.setDisplacement(val);
+      if(final <100){
+        this.setState({yellowDice: final});
+      }else if ( final === 100){
+        alert("Yellow Wins");
+          location.reload();
+      }
+    }
     var displacement = this.state.diceNumber + diceNumber +1;
+
+  },
+
+  setDisplacement: function(displacement) {
     var finalValue = displacement;
     var ladder = new Audio("../images/up.mp3");
     var snake = new Audio("../images/down.mp3");
-    var tap = new Audio("../images/tap.mp3");
-    tap.play();
-    console.log("displacement", displacement);
     if(displacement < 100){
       if(displacement == 3){
        finalValue = 24;
@@ -58,16 +99,16 @@ var MainApp = React.createClass({
         finalValue = 12;
         snake.play();
       }
-      this.setState({diceNumber: finalValue });
     } else if(displacement == 100) {
-      this.setState({diceNumber: displacement });
+       finalValue = 100;
     }
+    return finalValue;
   },
 
   render: function() {
     return (
       <div>
-        {this.state.diceNumber === 100 ? <Congrats /> : <GameBoard  diceNumber={this.state.diceNumber} playerNumber={this.state.playerNumber}/>}
+        {this.state.diceNumber === 100 ? <Congrats /> : <GameBoard  redDice={this.state.redDice} greenDice={this.state.greenDice} blueDice={this.state.blueDice} yellowDice={this.state.yellowDice} diceNumber={this.state.diceNumber} playerNumber={this.state.playerNumber}/>}
         <ScoreBoard connectBoard={this.handleDice} diceNumber={this.state.diceNumber}/>
       </div>
     );
@@ -261,6 +302,12 @@ var GameBoard = React.createClass({
       fontSize: 20,
     };
 
+    var scoreText = {
+      textAlign: "center",
+      fontSize: 20,
+      color: "white"
+    };
+
     var badgeStyle11 = {
       position: "absolute",
       left:790,
@@ -278,11 +325,11 @@ var GameBoard = React.createClass({
       var col = i*10;
       if(i%2 === 0){
         for(var j=0;j<=9;j++){
-          tiles.push(<Tile value={col-j} displacement={this.props.diceNumber} playerNumber={this.props.playerNumber}/>);
+          tiles.push(<Tile value={col-j} displacement={this.props.diceNumber}  redDice={this.props.redDice} greenDice={this.props.greenDice} blueDice={this.props.blueDice} yellowDice={this.props.yellowDice}  playerNumber={this.props.playerNumber}/>);
         }
       }else{
         for(var j=9;j>=0;j--){
-          tiles.push(<Tile value={col-j} displacement={this.props.diceNumber} playerNumber={this.props.playerNumber}/>);
+          tiles.push(<Tile value={col-j} displacement={this.props.diceNumber}  redDice={this.props.redDice} greenDice={this.props.greenDice} blueDice={this.props.blueDice} yellowDice={this.props.yellowDice}  playerNumber={this.props.playerNumber}/>);
         }
       }
       }
@@ -291,6 +338,13 @@ var GameBoard = React.createClass({
         <div>
         <div className="col-md-10 col-xs-10 col-lg-10" style={redTab}>
           {tiles}
+          <div style={scoreText}>
+              Player On Board: {this.props.playerNumber}
+          </div>
+          <div style={scoreText}>
+            Please Roll The Dice
+            Console: Red Wins!!!
+          </div>
         </div>
         <img  src={"./images/testdose5.gif"} style={badgeStyle1}/>
         <img  src={"./images/testdose11.gif"} style={badgeStyle2}/>
@@ -342,10 +396,11 @@ var Tile = React.createClass({
       color:'black',
       width: 100,
       height: 50,
-      border: "2px solid black",
-      paddingBottom:5,
+      border: "1px solid black",
+      paddingBottom:10,
       paddingTop:10,
       paddingLeft: 10,
+      paddingRight: 10,
       textAlign: 'center'
     }
 
@@ -371,34 +426,7 @@ var Tile = React.createClass({
       borderRadius: 10
     };
 
-    if(this.props.playerNumber === 1){
-      var highlight = {
-        marginLeft:10,
-        marginTop: -5,
-        height: 20,
-        width: 20,
-        backgroundColor: 'red',
-        borderRadius: 10
-      }
-    }else if(this.props.playerNumber === 2){
-      var highlight = {
-        marginLeft:10,
-        marginTop: -5,
-        height: 20,
-        width: 20,
-        backgroundColor: 'green',
-        borderRadius: 10
-      }
-    }else if(this.props.playerNumber === 3){
-      var highlight = {
-        marginLeft:10,
-        marginTop: -5,
-        height: 20,
-        width: 20,
-        backgroundColor: 'blue',
-        borderRadius: 10
-      }
-    }else if(this.props.playerNumber === 4){
+    if(this.props.playerNumber === 4 || 3 || 2 || 1){
       var highlight = {
         marginLeft:10,
         marginTop: -5,
@@ -408,48 +436,76 @@ var Tile = React.createClass({
         borderRadius: 10
       }
     }else{
-
+      var highlight = {
+        width: 0,
+        height: 0,
+        fontSize: 0,
+      }
     }
 
     var hideDiv = {
       width: 0,
-      height: 0
+      height: 0,
+      fontSize: 0,
     }
 
+    var highlight1 = {
+      marginLeft:-5,
+      marginTop:-3,
+      position:"absolute",
+      height: 20,
+      width: 20,
+      backgroundColor: 'red',
+      borderRadius: 10
+    }
+
+    var highlight2 = {
+      marginLeft:39,
+      marginTop: -3,
+      height: 20,
+      position:"absolute",
+      width: 20,
+      backgroundColor: 'green',
+      borderRadius: 10
+    }
+
+    var highlight3 = {
+      marginLeft:60,
+      marginTop: -3,
+      height: 20,
+      position:"absolute",
+      width: 20,
+      backgroundColor: 'blue',
+      borderRadius: 10
+    }
+
+    var highlight4 = {
+      marginLeft:17,
+      marginTop: -3,
+      position:"absolute",
+      height: 20,
+      width: 20,
+      backgroundColor: 'yellow',
+      borderRadius: 10
+    }
+
+    var higlightArray = [ 1, 20, 50, 60];
     return (
       <div className="col-md-1 col-xs-1 col-lg-1" style={setPaddingLeft}>
         {this.props.value}
-       {(() => {
-       if (this.props.playerNumber === 1) {
-        return(
-          <div  style={this.props.value === this.props.displacement ? highlight : hideDiv}></div>
-        );
-       }
-       else if (this.props.playerNumber === 2){
-       return(
-         <div  style={this.props.value === this.props.displacement ? highlight : hideDiv}></div>
-       );
-     }else if (this.props.playerNumber === 3){
-       return(
-         <div  style={this.props.value === this.props.displacement ? highlight : hideDiv}></div>
-       );
-     }else if (this.props.playerNumber === 4){
-       return(
-         <div  style={this.props.value === this.props.displacement ? highlight : hideDiv}></div>
-       );
-       }
-       else{
-       return(
-        <div  style={badgeStyle11}></div>
-       );
-       }
-       })()}
+      <span>
+        <div  style={ this.props.redDice === this.props.value ? highlight1 : hideDiv}></div>
+        <div  style={ this.props.greenDice === this.props.value ? highlight2 : hideDiv}></div>
+        <div  style={ this.props.blueDice === this.props.value ? highlight3 : hideDiv}></div>
+        <div  style={ this.props.yellowDice === this.props.value ? highlight4 : hideDiv}></div>
+      </span>
       </div>
     );
   }
 });
 
 var randomdice = 0;
+var count = 0;
 
 var ScoreBoard = React.createClass({
   getInitialState: function() {
@@ -460,7 +516,13 @@ var ScoreBoard = React.createClass({
    var imageArray = ["../images/1.gif", "../images/2.gif", "../images/3.gif", "../images/4.gif", "../images/5.gif", "../images/6.gif"];
    randomdice=Math.round(Math.random()*5);
    if(this.state.playerNumber<4){
-     this.setState({playerNumber:this.state.playerNumber + 1});
+     if(randomdice === 5 && count <=3) {
+       alert("You got a 6 roll again");
+       count = count +1;
+       this.setState({playerNumber:this.state.playerNumber});
+     }else{
+       this.setState({playerNumber:this.state.playerNumber + 1});
+     }
    }else {
      this.setState({playerNumber: 1});
    }
