@@ -36,7 +36,6 @@ var MultiPlayer = React.createClass({
 
   handleDice: function(diceNumber, playerNumber, sixCount) {
     console.log("This.state.player--", playerNumber);
-    tap.play();
     this.setState({playerNumber: playerNumber });
     if(playerNumber === 1){
       this.setState({diceCountRed: this.state.diceCountRed + 1, sixCountRed: sixCount});
