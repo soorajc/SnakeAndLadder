@@ -3,27 +3,27 @@ var Tile=require('./tile.js');
 var GameBoard = React.createClass({
   render: function() {
     var redTab = {
-      backgroundColor:"#DB1627",
+      backgroundColor: "#DB1627",
       paddingBottom: 20,
       paddingTop: 20,
-      paddingLeft:38,
+      paddingLeft: 38,
       paddingRight: 20,
     };
 
     var greyTab = {
-      backgroundColor:"#F1F1F1",
-      paddingLeft:5,
-      textAlign:"left"
+      backgroundColor: "#F1F1F1",
+      paddingLeft: 5,
+      textAlign: "left"
     };
 
     var textColor = {
-      color:"white"
+      color: "white"
     };
 
     var badgeStyle1 = {
       position: "absolute",
-      left:260,
-      top:15,
+      left: 260,
+      top: 15,
       bottom: 10,
       textAlign: "center",
       paddingTop: 8,
@@ -34,8 +34,8 @@ var GameBoard = React.createClass({
 
     var badgeStyle2 = {
       position: "absolute",
-      left:460,
-      top:160,
+      left: 460,
+      top: 160,
       bottom: 10,
       textAlign: "center",
       paddingTop: 8,
@@ -46,8 +46,8 @@ var GameBoard = React.createClass({
 
     var badgeStyle4 = {
       position: "absolute",
-      left:260,
-      top:360,
+      left: 260,
+      top: 360,
       bottom: 10,
       textAlign: "center",
       paddingTop: 8,
@@ -58,8 +58,8 @@ var GameBoard = React.createClass({
 
     var badgeStyle5 = {
       position: "absolute",
-      left:678,
-      top:55,
+      left: 678,
+      top: 55,
       bottom: 10,
       textAlign: "center",
       paddingTop: 8,
@@ -70,8 +70,8 @@ var GameBoard = React.createClass({
 
     var badgeStyle6 = {
       position: "absolute",
-      left:460,
-      top:190,
+      left: 460,
+      top: 190,
       bottom: 10,
       textAlign: "center",
       paddingTop: 8,
@@ -82,8 +82,8 @@ var GameBoard = React.createClass({
 
     var badgeStyle3 = {
       position: "absolute",
-      left:880,
-      top:80,
+      left: 880,
+      top: 80,
       bottom: 10,
       textAlign: "center",
       paddingTop: 8,
@@ -94,8 +94,8 @@ var GameBoard = React.createClass({
 
     var badgeStyle6 = {
       position: "absolute",
-      left:115,
-      top:80,
+      left: 115,
+      top: 80,
       bottom: 10,
       textAlign: "center",
       paddingTop: 8,
@@ -106,8 +106,8 @@ var GameBoard = React.createClass({
 
     var badgeStyle7 = {
       position: "absolute",
-      left:217,
-      top:15,
+      left: 217,
+      top: 15,
       bottom: 10,
       textAlign: "center",
       paddingTop: 8,
@@ -118,8 +118,8 @@ var GameBoard = React.createClass({
 
     var badgeStyle8 = {
       position: "absolute",
-      left:525,
-      top:20,
+      left: 525,
+      top: 20,
       bottom: 10,
       textAlign: "center",
       paddingTop: 8,
@@ -130,8 +130,8 @@ var GameBoard = React.createClass({
 
     var badgeStyle9 = {
       position: "absolute",
-      left:612,
-      top:155,
+      left: 612,
+      top: 155,
       bottom: 10,
       textAlign: "center",
       paddingTop: 8,
@@ -142,8 +142,8 @@ var GameBoard = React.createClass({
 
     var badgeStyle10 = {
       position: "absolute",
-      left:795,
-      top:155,
+      left: 795,
+      top: 155,
       bottom: 10,
       textAlign: "center",
       paddingTop: 8,
@@ -160,8 +160,8 @@ var GameBoard = React.createClass({
 
     var badgeStyle11 = {
       position: "absolute",
-      left:790,
-      top:15,
+      left: 790,
+      top: 15,
       bottom: 10,
       textAlign: "center",
       paddingTop: 8,
@@ -186,20 +186,20 @@ var GameBoard = React.createClass({
 
     return (
         <div>
-        <div className="col-md-10 col-xs-10 col-lg-10" style={redTab}>
-          {tiles}
-        </div>
-        <img  src={"./images/testdose5.gif"} style={badgeStyle1}/>
-        <img  src={"./images/testdose11.gif"} style={badgeStyle2}/>
-        <img  src={"./images/testdose2.gif"} style={badgeStyle3}/>
-        <img  src={"./images/testdose10.gif"} style={badgeStyle8}/>
-        <img  src={"./images/testdose4.gif"} style={badgeStyle9}/>
-        <img  src={"./images/testdose40.gif"} style={badgeStyle10}/>
-        <img  src={"./images/ladder-22.png"} style={badgeStyle4}/>
-        <img  src={"./images/five.png"} style={badgeStyle6}/>
-        <img  src={"./images/ladder-21.png"} style={badgeStyle5}/>
-        <img  src={"./images/ladder-22.png"} style={badgeStyle7}/>
-        <img  src={"./images/ladder-22.png"} style={badgeStyle11}/>
+          <div className="col-md-10 col-xs-10 col-lg-10" style={redTab}>
+            {tiles}
+          </div>
+          <img  src={"./images/testdose5.gif"} style={badgeStyle1}/>
+          <img  src={"./images/testdose11.gif"} style={badgeStyle2}/>
+          <img  src={"./images/testdose2.gif"} style={badgeStyle3}/>
+          <img  src={"./images/testdose10.gif"} style={badgeStyle8}/>
+          <img  src={"./images/testdose4.gif"} style={badgeStyle9}/>
+          <img  src={"./images/testdose40.gif"} style={badgeStyle10}/>
+          <img  src={"./images/ladder-22.png"} style={badgeStyle4}/>
+          <img  src={"./images/five.png"} style={badgeStyle6}/>
+          <img  src={"./images/ladder-21.png"} style={badgeStyle5}/>
+          <img  src={"./images/ladder-22.png"} style={badgeStyle7}/>
+          <img  src={"./images/ladder-22.png"} style={badgeStyle11}/>
         </div>
     );
   }

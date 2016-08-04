@@ -3,7 +3,6 @@ var ScoreBoard = require('./scoreboard.js');
 var ScoreCard = require('./scorecard.js');
 
 
-
 var MultiPlayer = React.createClass({
 
   getInitialState: function() {
@@ -36,7 +35,6 @@ var MultiPlayer = React.createClass({
 
   handleDice: function(diceNumber, playerNumber, sixCount) {
     var tap = new Audio("../sound/tap.mp3");
-    console.log("This.state.player--", playerNumber);
     tap.play();
     this.setState({playerNumber: playerNumber });
     if(playerNumber === 1){
@@ -44,14 +42,12 @@ var MultiPlayer = React.createClass({
       var val =  this.state.redDice + diceNumber + 1;
       this.getCount(val,playerNumber);
       var final = this.setDisplacement(val);
-
       if(final < 100){
         this.setState({redDice: final});
       }else if ( final === 100){
         alert("Red Wins");
         this.setState({redDice: final});
       }
-      console.log("Testing final value",final );
     }else if( playerNumber === 2){
       this.setState({diceCountGreen: this.state.diceCountGreen + 1, sixCountGreen: sixCount});
       var val =  this.state.greenDice + diceNumber + 1;
@@ -96,41 +92,41 @@ var MultiPlayer = React.createClass({
     var snake = new Audio("../sound/down.mp3");
     if(displacement < 100){
       if(displacement == 3){
-       finalValue = 24;
-       ladder.play();
+         finalValue = 24;
+         ladder.play();
       }else if(displacement == 33) {
-       finalValue = 87;
-       ladder.play();
+         finalValue = 87;
+         ladder.play();
       }else if(displacement == 39) {
-       finalValue = 81;
-       ladder.play();
+         finalValue = 81;
+         ladder.play();
       }else if(displacement == 58) {
-       finalValue = 85;
-       ladder.play();
+         finalValue = 85;
+         ladder.play();
       }else if(displacement == 73) {
-       finalValue = 92;
-       ladder.play();
+         finalValue = 92;
+         ladder.play();
      }else if(displacement == 98) {
-       finalValue = 59;
-       snake.play();
+         finalValue = 59;
+         snake.play();
      }else if(displacement == 95) {
-       finalValue = 26;
-       snake.play();
+         finalValue = 26;
+         snake.play();
      }else if(displacement == 46) {
-       finalValue = 27;
-       snake.play();
+         finalValue = 27;
+         snake.play();
      }else if(displacement == 89) {
-       finalValue = 11;
-       snake.play();
+         finalValue = 11;
+         snake.play();
      }else if(displacement == 65) {
-       finalValue = 4;
-       snake.play();
+         finalValue = 4;
+         snake.play();
      }else if(displacement == 53) {
-        finalValue = 12;
-        snake.play();
+         finalValue = 12;
+         snake.play();
       }
-    } else if(displacement == 100) {
-       finalValue = 100;
+    }else if(displacement == 100) {
+        finalValue = 100;
     }
     return finalValue;
   },
@@ -145,19 +141,19 @@ var MultiPlayer = React.createClass({
 
     return (
       <div>
-        <div>
-          <GameBoard redDice={this.state.redDice} greenDice={this.state.greenDice} blueDice={this.state.blueDice} yellowDice={this.state.yellowDice} diceNumber={this.state.diceNumber} playerNumber={this.state.playerNumber}/>
-          <ScoreBoard connectBoard={this.handleDice} diceNumber={this.state.diceNumber} handleMenu={this.props.handleMenu}/>
-        </div>
-        <div>
-          <ul id="draggablePanelList" className="col-md-10" style={scoreCard}>
-            <h2>Game Statistics</h2>
-            <ScoreCard  headerStyle={{"backgroundColor": "red"}} diceCount={this.state.diceCountRed} sixCount={this.state.sixCountRed} ladderCount={this.state.redLadder} snakeCount={this.state.redSnake}/>
-            <ScoreCard  headerStyle={{"backgroundColor": "green"}}diceCount={this.state.diceCountGreen} sixCount={this.state.sixCountGreen} ladderCount={this.state.greenLadder} snakeCount={this.state.greenSnake}/>
-            <ScoreCard  headerStyle={{"backgroundColor": "blue"}} diceCount={this.state.diceCountBlue} sixCount={this.state.sixCountBlue} ladderCount={this.state.blueLadder} snakeCount={this.state.blueSnake}/>
-            <ScoreCard  headerStyle={{"backgroundColor": "yellow"}} diceCount={this.state.diceCountYellow} sixCount={this.state.sixCountYellow} ladderCount={this.state.yellowLadder} snakeCount={this.state.yellowSnake}/>
-         </ul>
-        </div>
+          <div>
+            <GameBoard redDice={this.state.redDice} greenDice={this.state.greenDice} blueDice={this.state.blueDice} yellowDice={this.state.yellowDice} diceNumber={this.state.diceNumber} playerNumber={this.state.playerNumber}/>
+            <ScoreBoard connectBoard={this.handleDice} diceNumber={this.state.diceNumber} handleMenu={this.props.handleMenu}/>
+          </div>
+          <div>
+            <ul id="draggablePanelList" className="col-md-10" style={scoreCard}>
+              <h2>Game Statistics</h2>
+              <ScoreCard  headerStyle={{"backgroundColor": "red"}} diceCount={this.state.diceCountRed} sixCount={this.state.sixCountRed} ladderCount={this.state.redLadder} snakeCount={this.state.redSnake}/>
+              <ScoreCard  headerStyle={{"backgroundColor": "green"}}diceCount={this.state.diceCountGreen} sixCount={this.state.sixCountGreen} ladderCount={this.state.greenLadder} snakeCount={this.state.greenSnake}/>
+              <ScoreCard  headerStyle={{"backgroundColor": "blue"}} diceCount={this.state.diceCountBlue} sixCount={this.state.sixCountBlue} ladderCount={this.state.blueLadder} snakeCount={this.state.blueSnake}/>
+              <ScoreCard  headerStyle={{"backgroundColor": "yellow"}} diceCount={this.state.diceCountYellow} sixCount={this.state.sixCountYellow} ladderCount={this.state.yellowLadder} snakeCount={this.state.yellowSnake}/>
+           </ul>
+          </div>
       </div>
     );
   }

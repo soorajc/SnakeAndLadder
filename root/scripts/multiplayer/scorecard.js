@@ -1,7 +1,7 @@
 var ScoreCard = React.createClass({
   render: function() {
     var redTab = {
-      backgroundColor:"#F1F1F1",
+      backgroundColor: "#F1F1F1",
       paddingBottom: 20,
       paddingTop: 20,
       paddingLeft:50,
@@ -9,8 +9,8 @@ var ScoreCard = React.createClass({
     };
 
     var greyTab = {
-      backgroundColor:"#F1F1F1",
-      paddingLeft:5,
+      backgroundColor: "#F1F1F1",
+      paddingLeft: 5,
       textAlign:"left"
     };
 
@@ -20,8 +20,8 @@ var ScoreCard = React.createClass({
 
     return (
       <li className="panel" style={this.props.headerStyle}>
-          <div className="panel-heading"></div>
-          <div className="panel-body">
+        <div className="panel-heading"></div>
+        <div className="panel-body">
           <table className="table table-striped">
             <tbody>
               <tr className="info">
@@ -42,7 +42,7 @@ var ScoreCard = React.createClass({
               </tr>
             </tbody>
           </table>
-          </div>
+        </div>
       </li>
     );
   }

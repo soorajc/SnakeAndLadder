@@ -24,11 +24,11 @@ var ScoreBoard = React.createClass({
 
   render: function() {
     var setPaddingLeft = {
-      paddingLeft:20
+      paddingLeft: 20
     }
 
     var setPaddingTop = {
-      paddingTop:30
+      paddingTop: 30
     }
 
     var setChartWidth = {
@@ -52,7 +52,7 @@ var ScoreBoard = React.createClass({
     }
 
     var setColor = {
-      backgroundColor:"white"
+      backgroundColor: "white"
     };
 
     return (
