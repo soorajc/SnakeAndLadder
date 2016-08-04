@@ -15,7 +15,6 @@ var MainApp = React.createClass({
 
  componentDidMount() {
    var snd = new Audio("../sound/machines.mp3");
-   snd.loop = true;
    snd.play();
  },
 
